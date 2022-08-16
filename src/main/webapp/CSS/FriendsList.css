@@ -1,0 +1,184 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+html, body{
+	height: 100%;
+}
+#wrap{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 110px;
+}
+body{
+    background-color: white;
+}
+
+/* body list */
+#main_body{
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: 55px auto 0 auto;
+    background-color: white;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* body content */
+#body_content{
+    width: 700px;
+    margin-left: 210px;
+    float: left;
+    height: 100%;
+}
+#body_content hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#content_title{
+    padding: 10px 15px;
+}
+#content_title #title_name span{
+    font-size: 30px;
+}
+#content_optionzone #optionzone_box .box_lastOne{
+    float: right;
+    margin: 0 10px;
+}
+#content_optionzone #optionzone_box .box_lastOne input{
+    height: 30px;
+    padding: 0 5px;
+}
+/* content_boardzone */
+#boardzone_box{
+    width: 700px;
+    overflow: hidden;
+    float: left;
+}
+#boardzone_box hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#boardzone_ask{
+    width: 700px;
+    overflow: hidden;
+    float: left;
+    margin-bottom: 20px;
+}
+#boardzone_ask hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+.box_title{
+	padding-left: 20px;
+}
+.box_myboard{
+    width: 680px;
+    height: auto;
+    margin: 0 5px 5px 5px;
+    overflow: hidden;
+    border-bottom: 1px solid rgb(223, 218, 218);
+}
+.box_myboard .myboard_title{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+.box_myboard .myboard_title .profile_image{
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    float: left;
+}
+.box_myboard .myboard_title .profile_image img{
+    width: 50px;
+    height: 50px;
+}
+.box_myboard .myboard_title .profile_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    padding: 4px;
+}
+.box_myboard .myboard_title .profile_content .profile_name{
+    font-size: 15px;
+}
+.box_myboard .myboard_title .profile_content .profile_time{
+    font-size: 12px;
+}
+.box_myboard .myboard_title .profile_update{
+    float: right;
+    margin: 10px 30px 0 0;
+}
+.box_myboard .myboard_title .profile_update input{
+    padding: 3px 7px;
+}
+
+/* body_aside */
+#body_aside{
+    position: fixed;
+    float: left;
+    width: 290px;
+    height: 100%;
+    margin-left: 905px;
+}
+#body_aside hr{
+    border-top: 1px solid rgb(182, 182, 182);
+    margin: 0 10px;
+}
+#body_aside #aside_headline{
+    height: 25px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+    text-align: center;
+    font-size: 16px;
+}
+#body_aside .aside_block{
+    background-color: white;
+    overflow: hidden;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgb(223, 218, 218);
+}
+#body_aside .aside_block:hover{
+    background-color: rgb(241, 241, 241);
+}
+#body_aside .aside_block .block_title{
+    width: 275px;
+    height: 50px;
+    padding: 5px;
+}
+#body_aside .aside_block .block_title .profile_image{
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    float: left;
+}
+#body_aside .aside_block .block_title .profile_image img{
+    width: 50px;
+    height: 50px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_name{
+    font-size: 15px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_fallow{
+    font-size: 12px;
+}
+#body_aside .aside_block .block_title .profile_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    padding: 4px;
+}
+#body_aside .aside_block .block_title .profile_button{
+    margin-top: 10px;
+    float: right;
+}
+
+/* footer */
+footer{
+    width: 1200px;
+    height: 100%;
+    background-color: white;
+}

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+#list_friend{
+    position: fixed;
+    overflow: auto;
+    float: left;
+    width: 200px;
+    margin: 0 5px;
+    height: 92%;
+}
+#list_friend::-webkit-scrollbar{
+	width: 5px;
+}
+#list_friend::-webkit-scrollbar-thumb{
+	background-color: rgb(233, 235, 240);
+	border-radius: 10px;
+}
+#list_friend #friend_myprofile{
+    height: 65px;
+}
+#list_friend #friend_myprofile #myprofile_img{
+    float: left;
+}
+#list_friend #friend_myprofile #myprofile_img img{
+    max-width: 60px;
+    max-height: 60px;
+}
+#list_friend #friend_myprofile #myprofile_name{
+    float: left;
+    padding: 4px;
+    font-size: 15px;
+}
+#list_friend #friend_myprofile #myprofile_name #name_returntag{
+    font-size: 11px;
+}
+#list_friend div.friend_profile{
+    overflow: hidden;
+    border-radius: 1px 1px 1px 1px;
+    border-top: 1px solid rgb(226, 226, 226);
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+#list_friend div.friend_profile:hover{
+    background-color: aliceblue;
+}
+#list_friend div.friend_profile .profile_image{
+    float: left;
+    margin: 2px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+#list_friend div.friend_profile .profile_image img{
+    width: 40px;
+    height: 40px;
+}
+#list_friend div.friend_profile .profile_content{
+    float: left;
+    margin-left: 5px;
+    width: 90px
+}
+#list_friend div.friend_profile .profile_content span.profile_name{
+    font-size: 14px;
+}
+#list_friend div.friend_profile .profile_content span.profile_time{
+    font-size: 11px;
+}

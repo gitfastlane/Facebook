@@ -1,0 +1,249 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+html, body{
+	height: 100%;
+}
+#wrap{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 110px;
+}
+body{
+    background-color: rgb(240, 240, 240);
+}
+
+/* body list */
+#main_body{
+    max-width: 1200px;
+    min-width: 1200px;
+    overflow: hidden;
+    margin: 55px auto 0 auto;
+
+}
+#list_friend{
+    position: fixed;
+    overflow: auto;
+    float: left;
+    width: 200px;
+    margin: 0 5px;
+    height: 100%;
+}
+#list_friend div.friend_profile{
+    overflow: hidden;
+    border-radius: 1px 1px 1px 1px;
+    border-top: 1px solid rgb(226, 226, 226);
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+#list_friend div.friend_profile:hover{
+    background-color: aliceblue;
+}
+#list_friend div.friend_profile .profile_image{
+    float: left;
+    margin: 2px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+#list_friend div.friend_profile .profile_image img{
+    width: 40px;
+    height: 40px;
+}
+#list_friend div.friend_profile .profile_content{
+    float: left;
+    margin-left: 5px;
+    width: 90px
+}
+#list_friend div.friend_profile .profile_content span.profile_name{
+    font-size: 14px;
+}
+#list_friend div.friend_profile .profile_content span.profile_time{
+    font-size: 11px;
+}
+
+/* body content */
+#body_content{
+    width: 700px;
+    margin-left: 210px;
+    overflow: hidden;
+    float: left;
+}
+#body_content hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#body_content .content_box{
+    background-color: white;
+    width: 680px;
+    height: auto;
+    margin: 0 5px 5px 5px;
+    overflow: hidden;
+    border: 1px solid rgb(223, 218, 218);
+}
+#body_content .content_box .box_title{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+#body_content .content_box .box_title .profile_image{
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    float: left;
+}
+#body_content .content_box .box_title .profile_image img{
+    width: 50px;
+    height: 50px;
+}
+#body_content .content_box .box_title .profile_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    padding: 4px;
+}
+#body_content .content_box .box_title .profile_content .profile_name{
+    font-size: 15px;
+}
+#body_content .content_box .box_title .profile_content .profile_time{
+    font-size: 12px;
+}
+#body_content .content_box .box_board{
+    max-width: 680px;
+    padding: 5px;
+}
+#body_content .content_box .box_board .board_img{
+    overflow: hidden;
+    padding: 5px;
+    text-align: center;
+}
+#body_content .content_box .box_board .board_img img{
+    max-width: 100%;
+    max-height: 500px;
+}
+#body_content .content_box .box_board span{
+	font-size: 12px;
+	color: rgb(60, 122, 222);
+}
+#body_content .content_box .box_comment{
+    width: 100%;
+    height: auto;
+
+}
+#body_content .content_box .box_comment > div{
+    display: inline-block;
+    height: 35px;
+    width: auto;
+    margin-left: 5px;
+}
+#body_content .content_box .box_comment .comment_state{
+    display: block;
+    height: 25px;
+}
+#body_content .content_box .box_comment .comment_state span{
+    font-size: 12px;
+    margin-left: 15px;
+}
+#body_content .content_box .box_comment button{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: none;
+    background-color: white;
+}
+#body_content .content_box .box_comment button:hover{
+    background-color: rgb(223, 223, 223);
+}
+#body_content .content_box .box_comment button div{
+    margin-right: 5px;
+    float: left;
+}
+#body_content .content_box .box_comment .comment_write button{
+    width: 100px;
+}
+#body_content .content_box .box_comment img{
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+
+/* body_aside */
+#body_aside{
+    position: fixed;
+    float: left;
+    width: 290px;
+    height: 100%;
+    margin-left: 905px;
+}
+#body_aside hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 10px;
+}
+#body_aside .aside_block{
+    background-color: white;
+    overflow: hidden;
+    margin-bottom: 4px;
+    border: 1px solid rgb(223, 218, 218);
+}
+#body_aside .aside_block:hover{
+    background-color: rgb(241, 241, 241);
+}
+#body_aside .aside_block .block_title{
+    width: 275px;
+    height: 50px;
+    padding: 5px;
+}
+#body_aside .aside_block .block_title .profile_image{
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    float: left;
+}
+#body_aside .aside_block .block_title .profile_image img{
+    width: 50px;
+    height: 50px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_name{
+    font-size: 15px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_fallow{
+    font-size: 12px;
+}
+#body_aside .aside_block .block_title .profile_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    padding: 4px;
+}
+#body_aside .aside_block .block_content{
+    width: 275px;
+    height: auto;
+    padding: 0 5px 5px 5px;
+}
+#body_aside .aside_block .block_content .box_board{
+    width: 275px;
+    height: 40px;
+    padding: 5px;
+}
+#body_aside .aside_block .block_content .box_board .board_img{
+    overflow: hidden;
+    float: left;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px 30px 30px 30px;
+    text-align: center;
+}
+#body_aside .aside_block .block_content .box_board .board_img img{
+    width: 40px;
+    height: 40px;
+}
+#body_aside .aside_block .block_content .box_comment span{
+    font-size: 12px;
+    margin-left: 15px;
+}

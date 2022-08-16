@@ -1,0 +1,115 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+html, body{
+	height: 100%;
+}
+#wrap{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 110px;
+}
+body{
+    background-color: white;
+}
+
+/* body list */
+#main_body{
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: 55px auto 0 auto;
+    background-color: white;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* body content */
+#body_content{
+    width: 980px;
+    margin-left: 210px;
+    float: left;
+    height: 100%;
+}
+#body_content hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#content_title{
+    padding: 10px 15px;
+}
+#content_title #title_name span{
+    font-size: 30px;
+}
+#content_optionzone #optionzone_box .box_lastOne{
+    float: right;
+    margin: 0 10px;
+}
+#content_optionzone #optionzone_box .box_lastOne input{
+    height: 30px;
+    padding: 0 5px;
+}
+#content_optionzone #optionzone_box .box_lastOne #delete_submit{
+	display: none;
+}
+	
+/* content_boardzone */
+#boardzone_box{
+    overflow: hidden;
+    float: left;
+}
+#boardzone_box hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#boardzone_box .box_chapter{
+    width: 980px;
+    overflow: hidden;
+}
+#boardzone_box .box_chapter .chapter_date{
+    border-bottom: 1px solid rgb(221, 221, 221);
+    width: 97%;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+#boardzone_box .box_chapter .chapter_album .album_photo{
+    text-align: center;
+    height: 150px;
+    max-width: 300px;
+    float: left;
+    overflow: hidden;
+    margin: 5px;
+}
+#boardzone_box .box_chapter .chapter_album .album_photo:hover{
+    box-shadow: 0px 0px 5px 5px rgba(61, 61, 61, 0.2);
+}
+#boardzone_box .box_chapter .chapter_album .album_photo img{
+    max-height: 150px;
+}
+#boardzone_box .box_chapter .chapter_album .photo_checkbox{
+	display: none;
+}
+#boardzone_box .box_chapter .chapter_album .album_popup{
+	display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+#boardzone_box .box_chapter .chapter_album .album_popup img{
+    max-height: 600px;
+    max-width: 600px;	
+    position: absolute;
+    left: 10%;
+    top: 10%;
+}
+
+
+/* footer */
+footer{
+    width: 1200px;
+    height: 100%;
+    background-color: white;
+}

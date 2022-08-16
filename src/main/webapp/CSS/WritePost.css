@@ -1,0 +1,172 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+html, body{
+	height: 100%;
+}
+#wrap{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 110px;
+}
+body{
+    background-color: white
+}
+
+/* body list */
+#main_body{
+    max-width: 1200px;
+    min-width: 1200px;
+    overflow: hidden;
+    margin: 55px auto 0 auto;
+    background-color: white;
+}
+
+/* body content */
+#body_content{
+    width: 700px;
+    margin-left: 210px;
+    overflow: hidden;
+    float: left;
+}
+#body_content hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#content_title{
+    padding: 10px 15px;
+}
+#content_title #title_name span{
+    font-size: 35px;
+}
+
+#content_optionzone #optionzone_box{
+    margin-right: 10px;
+    background-color: rgb(248, 248, 248);
+}
+#content_optionzone #optionzone_box #box_title{
+    padding: 5px;
+    margin: 0 5px;
+    font-size: 20px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+#content_optionzone #optionzone_box #box_content{
+    padding: 15px;
+}
+#content_optionzone #optionzone_box #box_content textarea{
+    background-color: rgb(248, 248, 248);
+    outline: none;
+    border: 0;
+    font-size: 16px;
+}
+#content_optionzone #optionzone_box #box_select{
+    border-top: 1px solid rgb(221, 221, 221);
+    padding: 5px;
+    margin: 0 5px;
+    height: 40px;
+}
+#content_optionzone #optionzone_box #box_select > div{
+	font-size: 12px;
+	margin-bottom: 3px;
+}
+#content_optionzone #optionzone_box #box_select span{
+    display: inline-block;
+    margin-right: 5px;
+    overflow: hidden;
+}
+#content_optionzone #optionzone_box #box_select input{
+    margin-right: 5px;
+    width: 600px;
+    float: right;
+    background-color: rgb(248, 248, 248);
+    outline: none;
+    border: 0;
+    font-size: 16px;
+}
+#content_optionzone #optionzone_box #box_bottom{
+    height: 45px;
+    background-color: rgb(226, 226, 226);
+}
+#content_optionzone #optionzone_box #box_bottom #bottom_list{
+    margin-left: 10px;
+    float: left;
+}
+#content_optionzone #optionzone_box #box_bottom #bottom_list img{
+    height: 40px;
+    margin-top: 3px;
+    margin-right: 15px;
+}
+#content_optionzone #optionzone_box #box_bottom #bottom_list #b_image{
+	display: none;
+}
+#content_optionzone #optionzone_box #box_bottom #bottom_submit{
+    float: right;
+    margin: 7px 10px;
+}
+#content_optionzone #optionzone_box #box_bottom #bottom_submit input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(43, 94, 156);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+
+/* body_aside */
+#body_aside{
+    position: fixed;
+    float: left;
+    width: 290px;
+    height: 100%;
+    margin-left: 905px;
+}
+#body_aside hr{
+    border-top: 1px solid rgb(182, 182, 182);
+    margin: 0 10px;
+}
+#body_aside #aside_headline{
+    height: 25px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+    text-align: center;
+    font-size: 16px;
+}
+#body_aside .aside_block{
+    background-color: white;
+    overflow: hidden;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgb(223, 218, 218);
+}
+#body_aside .aside_block:hover{
+    background-color: rgb(241, 241, 241);
+}
+#body_aside .aside_block .block_title{
+    width: 275px;
+    height: 50px;
+    padding: 5px;
+}
+#body_aside .aside_block .block_title .profile_image{
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    float: left;
+}
+#body_aside .aside_block .block_title .profile_image img{
+    width: 50px;
+    height: 50px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_name{
+    font-size: 15px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_fallow{
+    font-size: 12px;
+}
+#body_aside .aside_block .block_title .profile_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    padding: 4px;
+}

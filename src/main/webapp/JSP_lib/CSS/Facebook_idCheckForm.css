@@ -1,0 +1,64 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+body{
+	background-color: rgb(240, 240, 240);
+}
+#header{
+	margin-top:30px;
+	height: 50px;
+	text-align: center;
+}
+#header img{
+	height: 40px;
+}
+#main{
+	text-align: center;
+}
+#main input#submit{
+	border: none;
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+#main input#submit:hover{
+	background-color: rgb(235, 235, 237);	
+}
+#main button{
+	border: none;
+	margin-top: 15px;
+	border-radius: 5px;
+	background-color: white;
+	padding: 5px 10px;
+}
+#main button:hover{
+	background-color: rgb(235, 235, 237);	
+}
+#main #restart{
+	border: none;
+	margin-top: 15px;
+	border-radius: 5px;
+	background-color: rgb(51, 71, 204);
+	padding: 5px 10px;	
+	color: white;
+}
+#main #restart:hover{
+	background-color: rgb(38, 53, 148);	
+}
+#main #closeAll{
+	border: none;
+	margin-top: 15px;
+	border-radius: 5px;
+	background-color: rgb(10, 20, 89);
+	padding: 5px 10px;		
+	color: white;
+}
+#main #closeAll:hover{
+	background-color: rgb(6, 12, 54);	
+}

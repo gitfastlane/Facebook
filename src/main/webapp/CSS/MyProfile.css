@@ -1,0 +1,169 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+html, body{
+	height: 100%;
+}
+#wrap{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 110px;
+}
+body{
+    background-color: white;
+}
+
+
+
+/* body list */
+#main_body{
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: 55px auto 0 auto;
+    background-color: white;
+    overflow: hidden;
+    height: 100%;
+}
+
+
+/* body content */
+#body_content{
+    width: 700px;
+    margin-left: 210px;
+    float: left;
+    height: 100%;
+}
+#body_content hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#content_title{
+    padding: 10px 15px;
+}
+#content_title #title_name span{
+    font-size: 30px;
+}
+/* content_boardzone */
+#boardzone_box{
+    width: 700px;
+    overflow: hidden;
+    float: left;
+}
+#boardzone_box hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+
+/* box_lastboard */
+#boardzone_box .box_lastboard{
+    width: 680px;
+    height: auto;
+    margin: 0 5px 5px 5px;
+    overflow: hidden;
+    border-bottom: 2px solid rgb(223, 218, 218);
+}
+#boardzone_box .box_lastboard .myboard_myinfo{
+    width: 100%;
+    overflow: hidden;
+    padding: 5px;
+}
+#boardzone_box .box_lastboard .myinfo_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    width: 95%;
+    padding: 4px;
+}
+#boardzone_box .box_lastboard .myinfo_content div{
+    margin-top: 5px;
+}
+#boardzone_box .box_lastboard .myinfo_content div > div{
+    display: inline-block;
+    width: 100px;
+}
+#boardzone_box .box_lastboard .myinfo_content img{
+    max-width: 300px;
+    max-height: 300px;
+}
+#boardzone_box .box_lastboard .myinfo_content .content_button{
+	width: 50px;
+    float: right;
+}
+#boardzone_box .box_lastboard .myinfo_content .content_button img{
+	width: 50px;
+}
+#boardzone_box .box_lastboard .myinfo_content .content_button #button_img_on{
+	position: absolute;
+	display: none;
+}
+#boardzone_box .box_lastboard .myinfo_content .content_button:hover #button_img_on{
+	display: block;	
+}
+#boardzone_box .box_lastboard .myinfo_content .content_button:hover #button_img_off{
+	display: none;	
+}
+#boardzone_box .box_lastboard .myinfo_content .content_button #m_image{
+	display: none;
+}
+#boardzone_box .box_lastboard .myinfo_content #content_gender > span{
+    display: inline-block;
+    width: 85px;
+    border: 1px solid rgb(197, 197, 197);
+    line-height: 28px;
+    font-size: 13px;
+    margin-right: 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+#boardzone_box .box_lastboard .myinfo_content #content_gender label{
+    margin-left: 5px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 70%;
+}
+#boardzone_box .box_lastboard .myinfo_content #content_gender input{
+    margin-right: 5px;
+    width: 15px;
+    float: right;
+}
+#boardzone_box .box_lastboard .myinfo_content .content_span{
+    width: 100px;
+}
+#boardzone_box #box_button{
+    float: left;
+}
+#boardzone_box #box_button input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(209, 43, 43);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+#boardzone_box #box_button input:hover{
+    background-color: rgb(170, 37, 37);
+}
+#boardzone_box #box_submit{
+    float: right;
+}
+#boardzone_box #box_submit input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(43, 94, 156);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+#boardzone_box #box_submit input:hover{
+    background-color: rgb(35, 76, 126);
+}
+
+/* footer */
+footer{
+    width: 1200px;
+    height: 100%;
+    background-color: white;
+}

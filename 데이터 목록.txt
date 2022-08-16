@@ -1,0 +1,83 @@
+create table fb_member(
+m_id_pk varchar(20) primary key,
+m_lastName varchar(20) not null,
+m_name varchar(20) not null,
+m_pw varchar(20) not null,
+m_email varchar(40) not null,
+m_birthYear varchar(10) not null,
+m_birthMonth varchar(5) not null,
+m_birthDay varchar(5) not null,
+m_gender varchar(10) not null,
+m_createDate date,
+m_image varchar(50));
+----------------------------------------------------
+create table fb_board(
+b_no_pk int auto_increment primary key,
+b_id_fk varchar(20) not null,
+b_wtime date,
+b_content text,
+b_image varchar(100),
+b_groupNum int default 0,
+b_stepNum int default 0,
+b_indentNum int default 0,
+b_like int default 0,
+foreign key(b_id_fk) references fb_member(m_id_pk));
+----------------------------------------------------
+create table fb_board_tag(
+bt_no_fk int, 
+bt_tagId_fk int,
+foreign key(bt_no_fk) references fb_board(b_no_pk),
+foreign key(bt_tagId_fk) references fb_tag(t_tagId_pk));
+----------------------------------------------------
+create table fb_tag(
+t_tagId_pk int auto_increment primary key,
+t_name varchar(50) not null);
+----------------------------------------------------
+create table fb_profile(
+p_id_fk varchar(20),
+p_locationCountry varchar(40),
+p_locationCity varchar(40),
+p_school varchar(20),
+p_schoolName varchar(40),
+p_schoolYear1 varchar(10),
+p_schoolMonth1 varchar(10),
+p_schoolDay1 varchar(10),
+p_schoolYear2 varchar(10),
+p_schoolMonth2 varchar(10),
+p_schoolDay2 varchar(10),
+p_schoolLocation varchar(40),
+p_workName varchar(40),
+p_workPlace varchar(40),
+p_workYear1 varchar(10),
+p_workMonth1 varchar(10),
+p_workDay1 varchar(10),
+p_workYear2 varchar(10),
+p_workMonth2 varchar(10),
+p_workDay2 varchar(10),
+p_workLocation varchar(40),
+p_relation1 varchar(20),
+p_relation2 varchar(20),
+p_relation3 varchar(20),
+p_relationName1 varchar(20),
+p_relationName2 varchar(20),
+p_relationName3 varchar(20),
+ foreign key(p_id_fk) references fb_member(m_id_pk));
+----------------------------------------------------
+create table fb_friends(
+fr_id_fk varchar(20) not null,
+fr_friendId varchar(20) not null,
+fr_confirm int,
+fr_ask int, 
+foreign key(fr_id_fk) references fb_member(m_id_pk));
+----------------------------------------------------
+create table fb_follow(
+fo_id_fk varchar(20) not null,
+fo_followId varchar(20) not null,
+foreign key(fo_id_fk) references fb_member(m_id_pk));
+----------------------------------------------------
+create table fb_like(
+li_no_fk int not null,
+li_id_fk varchar(20) not null,
+foreign key(li_id_fk) references fb_member(m_id_pk),
+foreign key(li_no_fk) references fb_board(b_no_pk));
+

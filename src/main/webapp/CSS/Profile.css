@@ -1,0 +1,303 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+html, body{
+	height: 100%;
+}
+#wrap{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: 110px;
+}
+body{
+    background-color: white;
+}
+
+/* body list */
+
+#main_body{
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: 55px auto 0 auto;
+    background-color: white;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* body content */
+
+#body_content{
+    width: 700px;
+    margin-left: 210px;
+    float: left;
+    height: 100%;
+}
+#body_content hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#content_title{
+    padding: 10px 15px;
+}
+#content_title #title_name span{
+    font-size: 30px;
+}
+#content_optionzone #optionzone_box .box_lastOne{
+    float: right;
+    margin: 0 10px;
+}
+#content_optionzone #optionzone_box .box_lastOne input{
+    height: 30px;
+    padding: 0 5px;
+}
+
+/* content_boardzone */
+
+#boardzone_box{
+    width: 700px;
+    overflow: hidden;
+    float: left;
+}
+#boardzone_box hr{
+    border-top: 1px solid rgb(221, 221, 221);
+    margin: 0 20px;
+}
+#boardzone_box .box_myboard{
+    width: 680px;
+    height: auto;
+    margin: 0 5px 5px 5px;
+    overflow: hidden;
+    border-bottom: 2px solid rgb(223, 218, 218);
+}
+#boardzone_box .box_myboard .myboard_myinfo{
+    width: 100%;
+    overflow: hidden;
+    padding: 5px;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_image{
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    float: left;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_image img{
+    width: 200px;
+    height: 200px;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    width: 65%;
+    padding: 4px;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_content .content_name{
+    font-size: 20px;
+    height: 40px;
+    border-bottom: 1px solid rgb(223, 218, 218);
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_content .content_lastinfo{
+    padding: 5px 0;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_content .content_lastinfo div{
+    margin-bottom: 5px;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_content .content_lastinfo div > div{
+    display: inline-block;
+    width: 100px;
+}
+#boardzone_box .box_myboard .myboard_myinfo .myinfo_content .content_lastinfo .content_span{
+    width: 100px;
+}
+
+/* ------------- box_lastboard --------------- */
+
+#boardzone_box .box_lastboard{
+    width: 680px;
+    height: auto;
+    margin: 0 5px 5px 5px;
+    overflow: hidden;
+    border-bottom: 2px solid rgb(223, 218, 218);
+}
+#boardzone_box .box_lastboard .myboard_myinfo{
+    width: 100%;
+    overflow: hidden;
+    padding: 5px;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_image{
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    float: left;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_image img{
+    width: 200px;
+    height: 200px;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    width: 95%;
+    padding: 4px;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_name{
+    font-size: 20px;
+    height: 40px;
+    border-bottom: 1px solid rgb(223, 218, 218);
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_name .myinfo_update{
+    float: right;
+    margin: 0;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_name .myinfo_update input{
+    padding: 3px 7px;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_lastinfo{
+    padding: 5px 0;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_lastinfo div{
+    margin-top: 5px;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_lastinfo div > div{
+    display: inline-block;
+    width: 100px;
+}
+#boardzone_box .box_lastboard .myboard_myinfo .myinfo_content .content_lastinfo .content_span{
+    width: 100px;
+}
+#boardzone_box .box_lastboard .up_location_input{
+	display: none;
+}
+#boardzone_box .box_lastboard .up_school_input{
+	display: none;
+}
+#boardzone_box .box_lastboard .up_work_input{
+	display: none;
+}
+#boardzone_box .box_lastboard .up_relation_input{
+	display: none;
+}
+#boardzone_box #up_save{
+	display: none;
+}
+#boardzone_box #up_save{
+    float: right;
+}
+#boardzone_box #up_save input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(43, 94, 156);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+#boardzone_box #up_save input:hover{
+    background-color: rgb(35, 76, 126);
+}
+/* ------------ box_lastboard add List ----------------- */
+#boardzone_box #add_location{
+	display: none;
+}
+#boardzone_box #add_school{
+	display: none;
+}
+#boardzone_box #add_work{
+	display: none;
+}
+#boardzone_box #add_relation{
+	display: none;
+}
+#boardzone_box #add_relation #relation2{
+	display: none;
+}
+#boardzone_box #add_relation #relation3{
+	display: none;
+}
+#boardzone_box #add_save{
+	display: none;
+}
+#boardzone_box #add_save{
+    float: right;
+}
+#boardzone_box #add_save input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(43, 94, 156);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+#boardzone_box #add_save input:hover{
+    background-color: rgb(35, 76, 126);
+}
+
+/* body_aside */
+#body_aside{
+    position: fixed;
+    float: left;
+    width: 290px;
+    height: 100%;
+    margin-left: 905px;
+}
+#body_aside hr{
+    border-top: 1px solid rgb(182, 182, 182);
+    margin: 0 10px;
+}
+#body_aside #aside_headline{
+    height: 25px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+    text-align: center;
+    font-size: 16px;
+}
+#body_aside .aside_block{
+    background-color: white;
+    overflow: hidden;
+    padding: 3px;
+    border-bottom: 1px solid rgb(223, 218, 218);
+}
+#body_aside .aside_block:hover{
+    background-color: rgb(241, 241, 241);
+}
+#body_aside .aside_block .block_title{
+    width: 275px;
+    height: auto;
+    overflow: hidden;
+}
+#body_aside .aside_block .block_title .profile_image{
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+    float: left;
+}
+#body_aside .aside_block .block_title .profile_image img{
+    width: 30px;
+    height: 30px;
+}
+#body_aside .aside_block .block_title .profile_content .profile_name{
+    font-size: 15px;
+}
+#body_aside .aside_block .block_title .profile_content{
+    margin-left: 5px;
+    display: inline-block;
+    height: 100%;
+    padding: 4px;
+}
+#body_aside .aside_block .block_title .profile_button{
+    margin-top: 5px;
+    float: right;
+}
+
+/* footer */
+footer{
+    width: 1200px;
+    height: 100%;
+    background-color: white;
+}

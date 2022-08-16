@@ -1,0 +1,90 @@
+@charset "UTF-8";
+#main_header{
+    height: 50px;
+    margin: 0 auto;
+    background-color: rgb(59, 89, 152);
+    top: 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+}
+#main_header #header_bar{
+    height: 50px;
+    min-width: 1200px;
+    margin: auto;
+    width: 1200px;
+}
+#main_header #header_bar > div{
+    overflow: hidden;
+    display: inline-block;
+    margin: auto 20px;
+}
+#main_header #header_bar #bar_img{
+    float: left;
+}
+#main_header #header_bar #bar_img img{
+    height: 40px;
+    padding-top: 5px;
+}
+#main_header #header_bar #bar_search{
+    float: left;
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+    line-height: 65px;
+    margin-left: 70px;
+}
+#main_header #header_bar #bar_search #search_box{
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+}
+#main_header #header_bar #bar_search #search_box input{
+    width: 90%;
+    height: 22px;
+    float: left;
+    border: none;
+}
+#main_header #header_bar #bar_search button{
+    float: right;
+}
+#main_header #header_bar #bar_search img{
+    height: 13px;
+    padding-top: 3px;
+}
+#main_header #header_bar #bar_mypage{
+    height: 50px;
+    line-height: 80px;
+    float: right;
+}
+#main_header #header_bar #bar_mypage #mypage_img{
+    overflow: hidden;
+    margin: auto 10px;
+    display: inline-block;
+    height: 50px;
+}
+#main_header #header_bar #bar_mypage #mypage_img img{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+#main_header #header_bar #bar_icon{
+    width: 150px;
+    height: 50px;
+    float: right;
+}
+#main_header #header_bar #bar_icon div{
+    height: 50px;
+    float: left;
+    margin: auto 10px;
+}
+#main_header #header_bar #bar_icon #icon_message img{
+    margin-top: 13px;
+    width: 35px;
+}
+#main_header #header_bar #bar_icon #icon_content img{
+    margin-top: 8px;
+    width: 35px;
+}

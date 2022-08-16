@@ -1,0 +1,13 @@
+@charset "UTF-8";
+#content_optionzone #optionzone_box{
+    height: 30px;
+    padding: 5px 15px;
+}
+#content_optionzone #optionzone_box .box_option{
+    float: left;
+    margin: 0 10px;
+}
+#content_optionzone #optionzone_box .box_option input{
+    height: 30px;
+    padding: 0 5px;
+}

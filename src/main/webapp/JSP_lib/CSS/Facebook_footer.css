@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* footer */
+#main_footer{
+	height: 80px;
+	padding: 10px 0;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
