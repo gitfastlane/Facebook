@@ -24,6 +24,6 @@ public class LoginCommand implements Command{
         	session.setAttribute("userID", dto.getM_id_pk());
         	Fb_memberDTO mdto = dao.selectOneById(dto.getM_id_pk());
         	session.setAttribute("userImage", mdto.getM_image());
-        }
+        }//로그인
     }
 }
