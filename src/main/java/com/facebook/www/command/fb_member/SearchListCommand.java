@@ -32,10 +32,14 @@ public class SearchListCommand implements Command{
 		Fb_tagDAO tdao = Fb_tagDAO.getFb_tagDAO();
 		
 		//검색기능
-		if(searchTag.contains("#")) {
+		searchTag = searchTag.trim();
+		if(searchTag.indexOf("#")==0) {
 			ArrayList<Fb_boardDTO> blist = bdao.searchBoardByTag(searchTag);
+			HashMap<String, Fb_memberDTO> memberHM = mdao.pickMemberById(blist);
 			HashMap<Integer, String> tagHM = tdao.pickTagFullNameByNo(blist);
-			request.
+			request.setAttribute("blist", blist);
+			request.setAttribute("memberHM", memberHM);
+			request.setAttribute("tagHM", tagHM);
 		}else {
 			ArrayList<Fb_memberDTO> mlist = mdao.searchMemberList(searchTag);
 			ArrayList<String> flist = fdao.printFriendIdList(userID);
@@ -47,9 +51,13 @@ public class SearchListCommand implements Command{
         ArrayList<Fb_friendsDTO> friendsList_sub = fdao.selectListById(userID);
 		HashMap<String, Fb_memberDTO> friendsListHM_sub = mdao.pickFriendById(friendsList_sub);
 		
+		//추천친구목록 불러오기
+		ArrayList<Fb_memberDTO> recommandList = mdao.recommandMemberListById(userID);
+		
 		request.setAttribute("friendsList_sub", friendsList_sub);
 		request.setAttribute("friendsListHM_sub", friendsListHM_sub);
 		
+		request.setAttribute("recommandList", recommandList);
 	}
 
 }

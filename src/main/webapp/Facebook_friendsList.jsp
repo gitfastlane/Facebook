@@ -51,6 +51,28 @@
                             <div class="profile_update">
                                 <a href="member_friendConfirm.do?fr_id_fk=${dto.fr_id_fk }"><input type="button" value="수락"></a>
                                 <a href="member_friendReject.do?fr_id_fk=${dto.fr_id_fk }"><input type="button" value="요청 삭제"></a>
+                                <a href="member_friendBlock.do?fr_friendId=${dto.fr_id_fk }"><input type="button" value="안보이기"></a>
+                            </div>
+                        </div>
+                    </div>
+                	</c:forEach>
+                </div>
+            </c:if>
+            <c:if test="${hostID eq userID }">
+                <div id="boardzone_ask">
+                	<div class="box_title">보낸 친구요청</div>
+                	<hr>
+                	<c:forEach var="dto" items="${myAskList }">
+                    <div class="box_myboard">
+                        <div class="myboard_title">
+                            <div class="profile_image">
+                                <img src="${myAskListHM[dto.fr_friendId].m_image }" alt="">
+                            </div>
+                            <div class="profile_content">
+                                <span class="profile_name">${myAskListHM[dto.fr_friendId].m_lastName } ${myAskListHM[dto.fr_friendId].m_name }</span><br>
+                            </div>
+                            <div class="profile_update">
+                                <a href="member_friendCancel.do?fr_friendId=${dto.fr_friendId }"><input type="button" value="요청 취소"></a>
                             </div>
                         </div>
                     </div>
@@ -78,97 +100,52 @@
                     </div>
                 	</c:forEach>
                 </div>
+            <c:if test="${hostID eq userID }">
+                <div id="boardzone_ask">
+                	<div class="box_title">안보이기 친구목록</div>
+                	<hr>
+                	<c:forEach var="dto" items="${blockList }">
+                    <div class="box_myboard">
+                        <div class="myboard_title">
+                            <div class="profile_image">
+                                <img src="${blockListHM[dto.fr_friendId].m_image }" alt="">
+                            </div>
+                            <div class="profile_content">
+                                <span class="profile_name">${blockListHM[dto.fr_friendId].m_lastName } ${blockListHM[dto.fr_friendId].m_name }</span><br>
+                            </div>
+                            <div class="profile_update">
+                                <a href="member_friendRemoveBlock.do?fr_friendId=${dto.fr_friendId }"><input type="button" value="안보이기 취소"></a>
+                            </div>
+                        </div>
+                    </div>
+                	</c:forEach>
+                </div>
+            </c:if>
             </div>
         </div>
         <aside id="body_aside">
             <div id="aside_headline">
                 <span>알 수도 있는 사람</span>
             </div>
-            <a href="">
+            <c:forEach var="dto" items="${mightFriendList }">
+            <a href="javascript:moveMyPage('${dto.m_id_pk }')">
                 <div class="aside_block">
                     <div class="block_title">
                         <div class="profile_image">
-                            <img src="img/profile.png" alt="">
+                            <img src="${dto.m_image }" alt="">
                         </div>
                         <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
+                            <span class="profile_name">${dto.m_lastName } ${dto.m_name }</span><br>
                         </div>
                         <div class="profile_button">
-                            <input type="button" value="안보이기">
+                        <c:if test="${hostID eq userID }">
+                            <a href="member_friendBlock.do?fr_friendId=${dto.m_id_pk }"><input type="button" value="안보이기"></a>
+                        </c:if>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/kakao1.jpg" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                        <div class="profile_button">
-                            <input type="button" value="안보이기">
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/kakao1.jpg" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                        <div class="profile_button">
-                            <input type="button" value="안보이기">
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/kakao1.jpg" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                        <div class="profile_button">
-                            <input type="button" value="안보이기">
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/kakao1.jpg" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                        <div class="profile_button">
-                            <input type="button" value="안보이기">
-                        </div>
-                    </div>
-                </div>
-            </a>
+            </c:forEach>
         </aside>
     </div>
     <%@ include file="JSP_lib/Facebook_footer.jsp" %>

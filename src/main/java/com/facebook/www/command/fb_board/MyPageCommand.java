@@ -39,6 +39,7 @@ public class MyPageCommand
         Fb_tagDAO tdao = Fb_tagDAO.getFb_tagDAO();
         Fb_friendsDAO fdao = Fb_friendsDAO.getFb_friendsDAO();
         
+        //메인 내용
         ArrayList<Fb_boardDTO> list = bdao.selectListById(hostID);
         HashMap<String, Fb_memberDTO> memberHM = mdao.pickMemberById(list);
         Fb_memberDTO mdto = mdao.selectOneById(hostID);
@@ -46,8 +47,12 @@ public class MyPageCommand
         ArrayList<String> myFriends = fdao.printFriendIdList(userID);
         ArrayList<String> topTenTagList = tdao.topTenTagListById(hostID);
         
+        //친구목록
         ArrayList<Fb_friendsDTO> friendsList_sub = fdao.selectListById(userID);
 		HashMap<String, Fb_memberDTO> friendsListHM_sub = mdao.pickFriendById(friendsList_sub);
+		
+		//알수도있는 친구목록
+		ArrayList<Fb_memberDTO> mightFriendList = mdao.ifyouknowMemberListById(userID);
         
         request.setAttribute("m_lastName", mdto.getM_lastName());
         request.setAttribute("m_name", mdto.getM_name());
@@ -59,6 +64,7 @@ public class MyPageCommand
         request.setAttribute("tagHM", tagHM);
         request.setAttribute("myFriends", myFriends);
         request.setAttribute("topTenTagList", topTenTagList);
+        request.setAttribute("mightFriendList", mightFriendList);
         //request.setAttribute("userID", userID);
         //request.setAttribute("hostID", hostID);
     }

@@ -175,16 +175,11 @@ public class Fb_memberDAO
 
     public boolean loginOK(Fb_memberDTO dto)
     {
-        Connection conn;
-        PreparedStatement pstmt;
-        ResultSet rs;
-        String sql;
-        boolean flag;
-        conn = getConnection();
-        pstmt = null;
-        rs = null;
-        sql = "select m_pw from "+TABLE_NAME+" where m_id_pk=?";
-        flag = false;
+        Connection conn = getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "select m_pw from "+TABLE_NAME+" where m_id_pk=?";
+        boolean flag = false;
         try
         {
             pstmt = conn.prepareStatement(sql);
@@ -433,7 +428,8 @@ public class Fb_memberDAO
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
     	ArrayList<Fb_memberDTO> list = new ArrayList<>();
-    	String sql = "select b_id_fk from "+TABLE_NAME_BOARD+" where b_no_pk in "
+    	String sql = "select b_id_fk from "+TABLE_NAME_BOARD+" where b_id_fk not in "
+    			+ "(select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk=? and fr_reject=1) and b_no_pk in "
     			+ "(select bt_no_fk from "+TABLE_NAME_BOARD_TAG+" where bt_no_fk not in "
     			+ "(select b_no_pk from "+TABLE_NAME_BOARD+" where b_id_fk=? or b_id_fk in "
     			+ "(select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk=? ) ) and bt_tagId_fk in "
@@ -445,6 +441,7 @@ public class Fb_memberDAO
 			pstmt.setString(1, id);
 			pstmt.setString(2, id);
 			pstmt.setString(3, id);
+			pstmt.setString(4, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(selectOneById(rs.getString("b_id_fk")));
@@ -452,8 +449,39 @@ public class Fb_memberDAO
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
 		}
     	return list;
     }
     
+    public ArrayList<Fb_memberDTO> ifyouknowMemberListById(String id){
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	ArrayList<Fb_memberDTO> list = new ArrayList<>();
+    	String sql = "select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk in "
+    			+ "(select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk = ? and fr_confirm = 1) and fr_confirm=1 and "
+    			+ "not fr_friendId= ? and fr_friendId not in "
+    			+ "(select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk = ? and (fr_confirm = 1 or fr_ask = 1 or fr_reject = 1) ) "
+    			+ "group by fr_friendId order by count(fr_friendId) desc limit 10";
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			pstmt.setString(3, id);
+			rs = pstmt.executeQuery();
+			System.out.println("ifyouknowMemberListById rs.next 전"); 
+			while(rs.next()) {
+				list.add(selectOneById(rs.getString("fr_friendId")));
+				System.out.println("list.add(selectOneById(rs.getString(\"fr_friendId\"))): "+rs.getString("fr_friendId"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+    	return list;
+    }
 }

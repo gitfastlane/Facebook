@@ -37,6 +37,8 @@
             </ul>
         </div>
         <div id="body_content">
+        <c:choose>
+        <c:when test="${not empty mlist }">
         	<c:forEach var="dto" items="${mlist }">
             <div class="content_box">
                 <div class="box_title">
@@ -54,110 +56,75 @@
                 </div>
             </div>
         	</c:forEach>
+        </c:when>
+        <c:when test="${not empty blist }">
+        	<c:forEach var="dto" items="${blist }">
+            <div class="content_box">
+                <div class="box_title">
+                	<a href="javascript:moveMyPage('${dto.b_id_fk }')">
+                    <div class="profile_image">
+                        <img src="${memberHM[dto.b_id_fk].m_image }" alt="">
+                    </div>
+                	</a>
+                    <div class="profile_content">
+                        <span class="profile_name">${memberHM[dto.b_id_fk].m_lastName } ${memberHM[dto.b_id_fk].m_name }</span><br>
+                        <span class="profile_time">작성: </span>
+                        <span class="profile_time">${dto.b_wtime }</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="box_board">
+                  	<c:if test="${not empty dto.b_content }"><p>${dto.b_content }</p></c:if>
+                	<c:if test="${dto.b_image ne null }">
+                		<div class="board_img"><img src="${dto.b_image }" alt=""></div>
+                	</c:if>
+                	<c:if test="${not empty tagHM[ dto.b_no_pk] }"><span>${tagHM[ dto.b_no_pk] }</span></c:if>
+                </div>
+                <hr>
+                <div class="box_comment">
+                    <div class="comment_state">
+                        <span>Like ${dto.b_like } </span>
+                    </div>
+                    <div class="comment_like">
+                        <button>
+                            <div><img src="img/LikeOff.png" alt=""></div>
+                            Like
+                        </button>
+                    </div>
+                    <div class="comment_write">
+                        <button>
+                            <div><img src="img/comment.png" alt=""></div>
+                            Comment
+                        </button>
+                    </div>
+                    <div class="comment_share">
+                        <button>
+                            <div><img src="img/share.png" alt=""></div>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        	</c:forEach>
+        </c:when>
+        </c:choose>
         </div>
         <aside id="body_aside">
-            <a href="">
+        	<div>추천 친구</div>
+        	<c:forEach var="recommand" items="${recommandList }">
+            <a href="javascript:moveMyPage('${recommand.m_id_pk }')">
                 <div class="aside_block">
                     <div class="block_title">
                         <div class="profile_image">
-                            <img src="img/profile.png" alt="">
+                            <img src="${recommand.m_image }" alt="">
                         </div>
                         <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                    </div>
-                    <div class="block_content">
-                        <hr>
-                        <div class="box_board">
-                            <div class="board_img">
-                                <img src="img/cycle.PNG" alt="">
-                            </div>
-                            <div class="board_img">
-                                <img src="img/drive.PNG" alt="">
-                            </div>
-                            <div class="board_img">
-                                <img src="img/plane.PNG" alt="">
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="box_comment">
-                            <div class="comment_state">
-                                <span>Like 5</span>
-                                <span>조회수 10</span>
-                            </div>
+                            <span class="profile_name">${recommand.m_lastName } ${recommand.m_name }</span><br>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/kakao1.jpg" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                    </div>
-                    <div class="block_content">
-                        <hr>
-                        <div class="box_board">
-                            <div class="board_img">
-                                <img src="img/phote.PNG" alt="">
-                            </div>
-                            <div class="board_img">
-                                <img src="img/plane.PNG" alt="">
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="box_comment">
-                            <div class="comment_state">
-                                <span>Like 5</span>
-                                <span>조회수 10</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/profile.png" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                    </div>
-                    <div class="block_content">
-                        <hr>
-                        <div class="box_board">
-                            <div class="board_img">
-                                <img src="img/cycle.PNG" alt="">
-                            </div>
-                            <div class="board_img">
-                                <img src="img/drive.PNG" alt="">
-                            </div>
-                            <div class="board_img">
-                                <img src="img/plane.PNG" alt="">
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="box_comment">
-                            <div class="comment_state">
-                                <span>Like 5</span>
-                                <span>조회수 10</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+        	</c:forEach>
         </aside>
     </div>
     <%@ include file="JSP_lib/Facebook_footer.jsp" %>

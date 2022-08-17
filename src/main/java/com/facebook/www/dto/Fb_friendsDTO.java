@@ -5,6 +5,8 @@ public class Fb_friendsDTO {
 	private String fr_friendId;
 	private int fr_confirm;
 	private int fr_ask;
+	private int fr_reject;
+	
 	public String getFr_id_fk() {
 		return fr_id_fk;
 	}
@@ -28,6 +30,12 @@ public class Fb_friendsDTO {
 	}
 	public void setFr_ask(int fr_ask) {
 		this.fr_ask = fr_ask;
+	}
+	public int getFr_reject() {
+		return fr_reject;
+	}
+	public void setFr_reject(int fr_reject) {
+		this.fr_reject = fr_reject;
 	}
 	
 }

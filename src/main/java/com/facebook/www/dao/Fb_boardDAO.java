@@ -165,7 +165,7 @@ public class Fb_boardDAO
     public void updatePostOK(Fb_boardDTO dto, String hashTag) {
     	Connection conn = getConnection();
     	PreparedStatement pstmt = null;
-    	String sql = "update "+TABLE_NAME+" set b_content=?, b_image=? where b_no_pk=?";
+    	String sql = "update "+TABLE_NAME+" set b_content=?, b_image=?, b_wtime=now() where b_no_pk=?";
     	int result = 0;
     	try {
 			pstmt = conn.prepareStatement(sql);

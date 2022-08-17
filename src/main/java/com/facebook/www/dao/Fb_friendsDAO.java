@@ -90,14 +90,63 @@ public class Fb_friendsDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Fb_friendsDTO> list = new ArrayList<>();
-		String sql = "select fr_id_fk from "+TABLE_NAME+" where fr_friendId=? and fr_ask=1";
+		String sql = "select fr_id_fk from "+TABLE_NAME+" where fr_friendId=? and fr_ask=1 and fr_id_fk not in (select fr_friendId from "+TABLE_NAME+" where fr_id_fk=? and fr_reject=1)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Fb_friendsDTO dto = new Fb_friendsDTO();
+				dto.setFr_id_fk(rs.getString("fr_id_fk"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<Fb_friendsDTO> selectMyAskListById(String id){
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Fb_friendsDTO> list = new ArrayList<>();
+		String sql = "select fr_friendId from "+TABLE_NAME+" where fr_id_fk=? and fr_ask=1";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Fb_friendsDTO dto = new Fb_friendsDTO();
-				dto.setFr_id_fk(rs.getString("fr_id_fk"));
+				dto.setFr_friendId(rs.getString("fr_friendId"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<Fb_friendsDTO> selectBlockListById(String id){
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Fb_friendsDTO> list = new ArrayList<>();
+		String sql = "select fr_friendId from "+TABLE_NAME+" where fr_id_fk=? and fr_reject=1";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Fb_friendsDTO dto = new Fb_friendsDTO();
+				dto.setFr_friendId(rs.getString("fr_friendId"));
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -211,6 +260,25 @@ public class Fb_friendsDAO {
 		}
 	}
 	
+	public void cancelFriend(String userID, String friendID) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "delete from "+TABLE_NAME+" where fr_id_fk=? and fr_friendId=? and fr_ask=1";
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, friendID);
+			result = pstmt.executeUpdate();
+			if(result<=0)System.out.println("rejectFriend Error");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+	}
+	
 	public void deleteFriend(String userID, String friendID) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
@@ -252,9 +320,51 @@ public class Fb_friendsDAO {
 		}
 	}
 	
+	public void blockFriend(String userID, String friendID) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "insert into "+TABLE_NAME+"(fr_id_fk, fr_friendId, fr_reject) values(?,?,1)";
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, friendID);
+			result = pstmt.executeUpdate();
+			if(result<=0) {
+				System.out.println("rejectFriend Error");
+			}else {
+				rejectFriend(userID, friendID);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+	}
 	
-	
-	
+	public void removeBlockFriend(String userID, String friendID) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "delete from "+TABLE_NAME+" where fr_id_fk=? and fr_friendId=? and fr_reject=1";
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userID);
+			pstmt.setString(2, friendID);
+			result = pstmt.executeUpdate();
+			if(result<=0) {
+				System.out.println("rejectFriend Error");
+			}else {
+				rejectFriend(userID, friendID);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+	}
 	
 	
 	

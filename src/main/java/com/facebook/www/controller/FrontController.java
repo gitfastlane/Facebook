@@ -177,11 +177,26 @@ public class FrontController extends HttpServlet{
         	command.execute(request, response);
         	pageName = "member_friendsList.do";
         	isRedirect = true;
+        }else if(commandName.equals("/member_friendCancel.do")) { 
+        	command = new FriendCancelCommand();
+        	command.execute(request, response);
+        	pageName = "member_friendsList.do";
+        	isRedirect = true;
         }else if(commandName.equals("/member_friendDelete.do")) {
         	command = new FriendDeleteCommand();
         	command.execute(request, response);
         	pageName = "member_friendsList.do";
         	isRedirect = true;
+        }else if(commandName.equals("/member_friendBlock.do")) {
+        	command = new FriendBlockCommand();
+        	command.execute(request, response);
+        	pageName = "member_friendsList.do";
+        	isRedirect = true;        	
+        }else if(commandName.equals("/member_friendRemoveBlock.do")) {
+        	command = new FriendRemoveBlockCommand();
+        	command.execute(request, response);
+        	pageName = "member_friendsList.do";
+        	isRedirect = true;        	        	
         }else if(commandName.equals("/member_friendAdd.do")) {
         	command = new FriendAddCommand();
         	command.execute(request, response);
