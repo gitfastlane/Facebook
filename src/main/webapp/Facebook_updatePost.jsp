@@ -24,7 +24,7 @@
         <div id="body_content">
             <div id="content_title">
                 <div id="title_name">
-                    <span>홍길동</span>
+                    <span>${m_lastName } ${m_name }</span>
                 </div>
             </div>
             <div id="content_optionzone">
@@ -60,34 +60,25 @@
             <div id="aside_headline">
                 <span>알 수도 있는 사람</span>
             </div>
-            <a href="">
+            <c:forEach var="dto" items="${mightFriendList }">
+            <a href="javascript:moveMyPage('${dto.m_id_pk }')">
                 <div class="aside_block">
                     <div class="block_title">
                         <div class="profile_image">
-                            <img src="img/profile.png" alt="">
+                            <img src="${dto.m_image }" alt="">
                         </div>
                         <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
+                            <span class="profile_name">${dto.m_lastName } ${dto.m_name }</span><br>
+                        </div>
+                        <div class="profile_button">
+                        <c:if test="${hostID eq userID }">
+                            <a href="member_friendBlock.do?fr_friendId=${dto.m_id_pk }"><input type="button" value="안보이기"></a>
+                        </c:if>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="">
-                <div class="aside_block">
-                    <div class="block_title">
-                        <div class="profile_image">
-                            <img src="img/kakao1.jpg" alt="">
-                        </div>
-                        <div class="profile_content">
-                            <span class="profile_name">홍길동</span><br>
-                            <span class="profile_fallow">팔로워: </span>
-                            <span class="profile_fallow">120</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            </c:forEach>
         </aside>
     </div>
     <%@ include file="JSP_lib/Facebook_footer.jsp" %>

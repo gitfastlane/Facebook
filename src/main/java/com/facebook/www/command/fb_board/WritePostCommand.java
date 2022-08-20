@@ -27,12 +27,17 @@ public class WritePostCommand implements Command{
         Fb_friendsDAO fdao = Fb_friendsDAO.getFb_friendsDAO();
         ArrayList<Fb_friendsDTO> friendsList_sub = fdao.selectListById(userID);
 		HashMap<String, Fb_memberDTO> friendsListHM_sub = mdao.pickFriendById(friendsList_sub);
+		
+		//알수도있는 친구목록
+		ArrayList<Fb_memberDTO> mightFriendList = mdao.ifyouknowMemberListById(userID);
         
         request.setAttribute("m_lastName", mdto.getM_lastName());
         request.setAttribute("m_name", mdto.getM_name());
         request.setAttribute("m_image", mdto.getM_image());
         request.setAttribute("friendsList_sub", friendsList_sub);
 		request.setAttribute("friendsListHM_sub", friendsListHM_sub);
+		
+		request.setAttribute("mightFriendList", mightFriendList);
 	}
 
 }

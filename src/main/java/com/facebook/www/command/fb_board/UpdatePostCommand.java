@@ -36,10 +36,13 @@ public class UpdatePostCommand implements Command{
 		String userID = (String) session.getAttribute("userID");
 		Fb_memberDAO mdao = Fb_memberDAO.getFb_memberDAO();
 		Fb_memberDTO mdto = mdao.selectOneById(userID);
-		
 		Fb_friendsDAO fdao = Fb_friendsDAO.getFb_friendsDAO();
+		
 		ArrayList<Fb_friendsDTO> friendsList_sub = fdao.selectListById(userID);
 		HashMap<String, Fb_memberDTO> friendsListHM_sub = mdao.pickFriendById(friendsList_sub);
+		
+		//알수도있는 친구목록
+		ArrayList<Fb_memberDTO> mightFriendList = mdao.ifyouknowMemberListById(userID);
 		
 		request.setAttribute("m_lastName", mdto.getM_lastName());
         request.setAttribute("m_name", mdto.getM_name());
@@ -48,6 +51,8 @@ public class UpdatePostCommand implements Command{
 		request.setAttribute("friendsListHM_sub", friendsListHM_sub);
 		request.setAttribute("dto", bdto);
 		request.setAttribute("tagName", tagName);
+		
+		request.setAttribute("mightFriendList", mightFriendList);
 	}
 
 }
