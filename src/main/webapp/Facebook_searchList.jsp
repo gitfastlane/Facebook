@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="CSS/SearchList.css">
     <link rel="stylesheet" href="JSP_lib/CSS/Facebook_header.css">
     <link rel="stylesheet" type="text/css" href="JSP_lib/CSS/Facebook_footer.css">
+    <link rel="stylesheet" type="text/css" href="JSP_lib/CSS/Facebook_reply.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -28,8 +30,6 @@
                             </div>
                             <div class="profile_content">
                                 <span class="profile_name">${friendsListHM_sub[dto.fr_friendId].m_lastName } ${friendsListHM_sub[dto.fr_friendId].m_name }</span><br>
-                                <span class="profile_time">Online: </span>
-                                <span class="profile_time">2일전</span>
                             </div>
                         </div>
                     </a></li>
@@ -83,27 +83,32 @@
                 <hr>
                 <div class="box_comment">
                     <div class="comment_state">
-                        <span>Like ${dto.b_like } </span>
+                        <span>Like </span><span id="result_like${dto.b_no_pk }">${dto.b_like } </span>
                     </div>
                     <div class="comment_like">
-                        <button>
-                            <div><img src="img/LikeOff.png" alt=""></div>
+                    <c:if test="${llist.contains(dto.b_no_pk) }">
+                        <button type="button" class="like_btn" data-no="${dto.b_no_pk }">
+                            <div><img id="img_like${dto.b_no_pk }" data-no="${dto.b_no_pk }" src="img/LikeOn.png" alt=""></div>
                             Like
                         </button>
+                    </c:if>
+                    <c:if test="${!llist.contains(dto.b_no_pk) }">
+                        <button type="button" class="like_btn" data-no="${dto.b_no_pk }">
+                            <div><img id="img_like${dto.b_no_pk }" data-no="${dto.b_no_pk }" src="img/LikeOff.png" alt=""></div>
+                            Like
+                        </button>
+                    </c:if>
                     </div>
                     <div class="comment_write">
-                        <button>
+                        <input type="hidden" id="chkComment${dto.b_no_pk}" value="0">
+                        <button class="write_btn" onclick="openComment(${dto.b_no_pk})" data-no="${dto.b_no_pk}"> <!--   변경 -->
                             <div><img src="img/comment.png" alt=""></div>
                             Comment
                         </button>
                     </div>
-                    <div class="comment_share">
-                        <button>
-                            <div><img src="img/share.png" alt=""></div>
-                            Share
-                        </button>
-                    </div>
                 </div>
+                <div class="box_write" id="writeBox${dto.b_no_pk }">
+               	</div>
             </div>
         	</c:forEach>
         </c:when>
@@ -147,5 +152,6 @@
 	}
 </script>
 <script type="text/javascript" src="JS/SearchList.js"></script>
+<script type="text/javascript" src="JS/Reply.js"></script>
 </body>
 </html>

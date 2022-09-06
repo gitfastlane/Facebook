@@ -14,6 +14,7 @@ public class Fb_boardDTO
 	private int b_stepNum;
 	private int b_indentNum;
 	private int b_like;
+	private String b_replyId;	
 
     public Fb_boardDTO()
     {
@@ -108,4 +109,13 @@ public class Fb_boardDTO
     {
         this.b_like = b_like;
     }
+
+	public String getB_replyId() {
+		return b_replyId;
+	}
+
+	public void setB_replyId(String b_replyId) {
+		this.b_replyId = b_replyId;
+	}
+    
 }

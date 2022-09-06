@@ -6,6 +6,7 @@
 package com.facebook.www.dao;
 
 import com.facebook.www.dto.Fb_boardDTO;
+import com.facebook.www.dto.Fb_memberDTO;
 import com.facebook.www.dto.Fb_tagDTO;
 
 import java.sql.*;
@@ -209,7 +210,7 @@ public class Fb_boardDAO
     	PreparedStatement pstmt = null;
     	ResultSet rs = null;
     	Fb_boardDTO dto = new Fb_boardDTO();
-    	String sql = "select b_no_pk, b_id_fk, b_wtime, b_content, b_image, b_like from "+TABLE_NAME+" where b_no_pk=?";
+    	String sql = "select b_no_pk, b_id_fk, b_wtime, b_content, b_image, b_like from "+TABLE_NAME+" where b_no_pk=? and b_indentNum=0";
     	try {
     		pstmt = conn.prepareStatement(sql);
     		pstmt.setInt(1, b_no_pk);
@@ -237,7 +238,7 @@ public class Fb_boardDAO
         ResultSet rs = null;
         ArrayList<Fb_boardDTO> list = new ArrayList<>();
         String sql = "select b_no_pk, b_id_fk, b_wtime, b_content, b_image, b_like from "+TABLE_NAME+" "
-        		+ "where b_id_fk=? or b_id_fk in (select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk=? and fr_confirm=1) order by b_wtime desc";
+        		+ "where b_indentNum=0 and (b_id_fk=? or b_id_fk in (select fr_friendId from "+TABLE_NAME_FRIENDS+" where fr_id_fk=? and fr_confirm=1)) order by b_wtime desc";
         try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -268,7 +269,7 @@ public class Fb_boardDAO
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<Fb_boardDTO> list = new ArrayList<>();
-        String sql = "select b_no_pk, b_id_fk, b_wtime, b_content, b_image, b_like from "+TABLE_NAME+" where b_id_fk=? order by b_wtime desc";
+        String sql = "select b_no_pk, b_id_fk, b_wtime, b_content, b_image, b_like from "+TABLE_NAME+" where b_id_fk=? and b_indentNum=0 order by b_wtime desc";
         try
         {
             pstmt = conn.prepareStatement(sql);
@@ -332,7 +333,7 @@ public class Fb_boardDAO
     	deleteHashTag(dto.getB_no_pk());
     	Connection conn = getConnection();
         PreparedStatement pstmt = null;
-        String sql = "delete from "+TABLE_NAME+" where b_no_pk=?";
+        String sql = "delete from "+TABLE_NAME+" where b_groupNum=?";
         int result = 0;
         try {
 			pstmt = conn.prepareStatement(sql);
@@ -352,7 +353,7 @@ public class Fb_boardDAO
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         ArrayList<Fb_boardDTO> list = new ArrayList<>();
-        String sql = "select * from "+TABLE_NAME+" where b_no_pk in "
+        String sql = "select * from "+TABLE_NAME+" where b_indentNum=0 and b_no_pk in "
         		+ "(select bt_no_fk from "+TABLE_NAME_BOARD_TAG+" where bt_tagId_fk = "
         		+ "(select t_tagId_pk from "+TABLE_NAME_TAG+" where t_name = ? )) order by b_wtime desc";
         try {
@@ -378,6 +379,151 @@ public class Fb_boardDAO
         return list;
     }
     
+    public ArrayList<Fb_boardDTO> selectReplyListByNo(int no){
+    	Connection conn = getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<Fb_boardDTO> list = new ArrayList<>();
+        String sql = "select b_no_pk, b_id_fk, b_wtime, b_content, b_groupNum, b_stepNum, b_indentNum, b_like, b_replyId from "+TABLE_NAME+" "
+        		+ "where b_groupNum=? and (b_indentNum=1 or b_indentNum=2) order by b_wtime";
+        try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Fb_boardDTO dto = new Fb_boardDTO();
+				dto.setB_no_pk(rs.getInt("b_no_pk"));
+				dto.setB_id_fk(rs.getString("b_id_fk"));
+				dto.setB_wtime(rs.getString("b_wtime"));
+				dto.setB_content(rs.getString("b_content"));
+				dto.setB_groupNum(rs.getInt("b_groupNum"));
+				dto.setB_stepNum(rs.getInt("b_stepNum"));
+				dto.setB_indentNum(rs.getInt("b_indentNum"));
+				dto.setB_like(rs.getInt("b_like"));
+				dto.setB_replyId(rs.getString("b_replyId"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+        return list;
+    }
     
+    public HashMap<Integer, ArrayList<Fb_boardDTO>> pickReplyListByNo(int no){
+    	HashMap<Integer, ArrayList<Fb_boardDTO>> replyHM = new HashMap<>();
+    	replyHM.put(no, selectReplyListByNo(no));
+    	return replyHM;
+    }
     
+    public void writeReply(Fb_boardDTO dto) {
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	int result = 0;
+    	String sql = "insert into "+TABLE_NAME+"(b_id_fk, b_content, b_groupNum, b_stepNum, b_indentNum, b_replyId) values(?,?,?,?,?,?)";
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getB_id_fk());
+			pstmt.setString(2, dto.getB_content());
+			pstmt.setInt(3, dto.getB_groupNum());
+			pstmt.setInt(4, dto.getB_stepNum());
+			pstmt.setInt(5, dto.getB_indentNum());
+			pstmt.setString(6, dto.getB_replyId());
+			result = pstmt.executeUpdate();
+			if(result<=0)System.out.println("writeReply Error");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+    }
+ 
+    public void deleteOneBoard(int no) {
+    	int indentNum = getIndentNum(no);
+    	if(indentNum==0) {
+    		deleteIndentZero(no);
+    	}else if(indentNum==1) {
+    		deleteIndentOne(no);
+    	}else if(indentNum==2) {
+    		deleteIndentTwo(no);
+    	}else {
+    		System.out.println("deleteOneBoard Error");
+    	}
+    }
+    private int getIndentNum(int no) {
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	int indentNum = 0;
+    	String sql = "select b_indentNum from "+TABLE_NAME+" where b_no_pk=?";
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				indentNum = rs.getInt("b_indentNum");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rs, pstmt, conn);
+		}
+    	return indentNum;
+    }
+    private void deleteIndentZero(int no) {
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	int result = 0;
+    	String sql = "delete from "+TABLE_NAME+" where b_groupNum=?";
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+			if(result<=0)System.out.println("deleteIndentZero Error");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+    }
+    private void deleteIndentOne(int no) {
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	int result = 0;
+    	String sql = "delete from "+TABLE_NAME+" where b_no_pk=? or b_stepNum=?";
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.setInt(2, no);
+			result = pstmt.executeUpdate();
+			if(result<=0)System.out.println("deleteIndentOne Error");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+    }
+    private void deleteIndentTwo(int no) {
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	int result = 0;
+    	String sql = "delete from "+TABLE_NAME+" where b_no_pk=?";
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+			if(result<=0)System.out.println("deleteIndentTwo Error");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
+    }
 }

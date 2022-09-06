@@ -33,8 +33,6 @@
                             </div>
                             <div class="profile_content">
                                 <span class="profile_name">${friendsListHM_sub[dto.fr_friendId].m_lastName } ${friendsListHM_sub[dto.fr_friendId].m_name }</span><br>
-                                <span class="profile_time">Online: </span>
-                                <span class="profile_time">2일전</span>
                             </div>
                         </div>
                 </a></li>

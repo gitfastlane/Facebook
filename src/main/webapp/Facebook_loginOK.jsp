@@ -13,11 +13,14 @@
 </head>
 <body>
 <%
+	String adminID = (String)session.getAttribute("adminID");
 	String userID = (String)session.getAttribute("userID");
-	if(userID==null){
-		response.sendRedirect("member_login.do");
-	}else{
+	if(adminID!=null){
+		response.sendRedirect("admin_home.do");		
+	}else if(userID!=null){
 		response.sendRedirect("home.do");
+	}else{
+		response.sendRedirect("member_login.do");
 	}
 %>
 </body>

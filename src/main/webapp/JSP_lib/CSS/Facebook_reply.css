@@ -1,0 +1,255 @@
+@charset "UTF-8";
+/* ----------write (댓글)-------------- */
+.box_write{
+    width: 100%;
+    height: auto;
+    display: none;
+}
+.box_write .replyA{
+	margin: 2px;
+	font-size: 12px;
+}
+.box_write .readMoreA{
+	margin: 2px 0;
+	color: blue;
+	font-size: 14px;
+}
+.box_write .deleteReply{
+	margin: 2px;
+	font-size: 12px;
+}
+.box_write .write_textarea{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.box_write .write_textarea .textarea_image{
+    float: left;
+    margin: 2px 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+.box_write .write_textarea .textarea_image img{
+    width: 40px;
+    height: 40px;
+}
+.box_write .write_textarea .textarea_textbox{
+    float: left;
+    margin: 13px 0 5px 0;
+}
+.box_write .write_textarea .textarea_textbox textarea{
+    width: 570px;
+    height: 20px;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+    resize: none;
+}
+.box_write .write_textarea .textarea_submit{
+    float: right;
+    margin-right: 40px;
+    margin-bottom: 15px;
+}
+.box_write .write_textarea .textarea_submit input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(33, 126, 219);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+.box_write .write_textarea .textarea_submit input:hover{
+    background-color: rgb(35, 76, 126);
+}
+
+/*-------- replyarea(답글) ------------*/
+.box_write .write_replyarea{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 15px 0 ;
+}
+.box_write .write_replyarea .replyarea_image{
+    float: left;
+    margin: 2px 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+.box_write .write_replyarea .replyarea_image img{
+    width: 40px;
+    height: 40px;
+}
+.box_write .write_replyarea .replyarea_textbox{
+    float: left;
+    margin: 2px 0 2px 0;
+    width: 88%;
+}
+.box_write .write_replyarea .replyarea_textbox p{
+    word-wrap: break-word;
+}
+.replyarea_textbox .textbox_write{
+    width: 100%;
+    height: auto;
+}
+.replyarea_textbox .textbox_write > div{
+    display: inline-block;
+    height: 35px;
+    width: auto;
+    margin-left: 5px;
+}
+.replyarea_textbox .textbox_write img{
+    float: left;
+    width: 15px;
+    height: 15px;
+}
+.replyarea_textbox .textbox_textarea{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: none;
+}
+.replyarea_textbox .textbox_textarea .textarea_image{
+    float: left;
+    margin: 2px 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+.replyarea_textbox .textbox_textarea .textarea_image img{
+    width: 40px;
+    height: 40px;
+}
+.replyarea_textbox .textbox_textarea .textarea_textbox{
+    float: left;
+    margin: 13px 0 5px 0;
+}
+.replyarea_textbox .textbox_textarea .textarea_textbox textarea{
+    width: 500px;
+    height: 20px;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+    resize: none;
+}
+.replyarea_textbox .textbox_textarea .textarea_submit{
+    float: right;
+    margin-right: 40px;
+    margin-bottom: 15px;
+}
+.replyarea_textbox .textbox_textarea .textarea_submit input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(33, 126, 219);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+.replyarea_textbox .textbox_textarea .textarea_submit input:hover{
+    background-color: rgb(35, 76, 126);
+}
+/*------------ rere(답답글) ---------------*/
+.box_write .write_replyarea .replyarea_rereplyarea{
+    width: 90%;
+    height: auto;
+    overflow: hidden;
+    margin: 15px 0 ;
+    margin-left: 60px;
+    display: none;
+}
+.replyarea_rereplyarea .rereplyarea_image{
+    float: left;
+    margin: 2px 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+.replyarea_rereplyarea .rereplyarea_image img{
+    width: 40px;
+    height: 40px;
+}
+.replyarea_rereplyarea .rereplyarea_textbox{
+    float: left;
+    margin: 2px 0 2px 0;
+    width: 88%;
+}
+.replyarea_rereplyarea .rereplyarea_textbox p{
+    word-wrap: break-word;
+}
+.rereplyarea_textbox .textbox_write{
+    width: 100%;
+    height: auto;
+}
+.rereplyarea_textbox .textbox_write > div{
+    display: inline-block;
+    height: 35px;
+    width: auto;
+    margin-left: 5px;
+}
+.rereplyarea_textbox .textbox_write img{
+    float: left;
+    width: 15px;
+    height: 15px;
+}
+.rereplyarea_textbox .textbox_textarea{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: none;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_image{
+    float: left;
+    margin: 2px 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_image img{
+    width: 40px;
+    height: 40px;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_textbox{
+    float: left;
+    margin: 13px 0 5px 0;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_textbox textarea{
+    width: 440px;
+    height: 20px;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+    resize: none;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_submit{
+    float: right;
+    margin-right: 40px;
+    margin-bottom: 15px;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_submit input{
+    font-size: 18px;
+    padding: 5px 15px;
+    background-color: rgb(33, 126, 219);
+    border: 0;
+    color: white;
+    border-radius: 3px 3px 3px 3px;
+}
+.rereplyarea_textbox .textbox_textarea .textarea_submit input:hover{
+    background-color: rgb(35, 76, 126);
+}

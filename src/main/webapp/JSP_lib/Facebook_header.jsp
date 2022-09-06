@@ -28,8 +28,18 @@
                 </div>
             </div>
             <div id="bar_icon">
-                <a href=""><div id="icon_message"><img src="img/message.png" alt=""></div></a>
-                <a href=""><div id="icon_content"><img src="img/content.png" alt=""></div></a>
+                <div id="icon_content"><img src="img/content.png" alt="">
+                	<div id="content_box">
+                        <ul>
+                            <a href="member_logout.do"><li>
+                                logout
+                            </li></a>
+                            <a href="member_myProfile.do"><li>
+                                회원정보
+                            </li></a>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div id="bar_mypage">
                 <a href="board_userMyPage.do">

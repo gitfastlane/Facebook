@@ -107,8 +107,10 @@
                             </div>
                          </div> 
                     </div>
-                    <div id="box_button"><input type="button" value="계정 삭제"></div>
                     <div id="box_submit"><input type="submit" value="수정"></div>
+                </form>
+                <form action="member_deleteAccount.do" method="get" onsubmit="return deleteSubmit();">
+                    <div id="box_button"><input type="submit" value="계정 삭제"></div>
                 </form>
                 </div>
             </div>
@@ -116,5 +118,6 @@
     </div>
     <%@ include file="JSP_lib/Facebook_footer.jsp" %>
 </div>
+<script type="text/javascript" src="JS/MyProfile.js"></script>
 </body>
 </html>

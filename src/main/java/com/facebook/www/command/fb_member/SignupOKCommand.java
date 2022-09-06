@@ -6,7 +6,9 @@
 package com.facebook.www.command.fb_member;
 
 import com.facebook.www.command.Command;
+import com.facebook.www.dao.Fb_boardDAO;
 import com.facebook.www.dao.Fb_memberDAO;
+import com.facebook.www.dto.Fb_boardDTO;
 import com.facebook.www.dto.Fb_memberDTO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -34,7 +36,13 @@ public class SignupOKCommand
         dto.setM_birthMonth(request.getParameter("birth_month"));
         dto.setM_birthDay(request.getParameter("birth_day"));
         dto.setM_gender(request.getParameter("gender"));
-        Fb_memberDAO dao = Fb_memberDAO.getFb_memberDAO();
-        dao.signupOK(dto);
+        Fb_memberDAO mdao = Fb_memberDAO.getFb_memberDAO();
+        mdao.signupOK(dto);
+        
+        Fb_boardDTO bdto = new Fb_boardDTO(); // 기본 board 작성
+        bdto.setB_id_fk(dto.getM_id_pk());
+        bdto.setB_content("페이스북에 오신걸 환영합니다.");
+        Fb_boardDAO bdao = Fb_boardDAO.getFb_boardDAO();
+        bdao.writePostOK(bdto, null);
     }
 }

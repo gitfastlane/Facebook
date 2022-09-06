@@ -1,0 +1,48 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+li{list-style-type: none;}
+a{
+    text-decoration: none;
+    color: black;
+}
+body{
+    background-color: rgb(240, 240, 240);
+}
+
+
+/* body list */
+#main_body{
+	max-width: 1200px;
+    min-width: 1200px;
+    overflow: hidden;
+    margin: 55px auto 0 auto;
+}
+
+.box_dateBox input[type="text"]{
+    width: 200px;
+    height: 22px;
+    border: none;
+}
+
+.box_content table{
+    width: 1200px;
+    border-collapse: collapse;
+}
+.box_content caption input{
+	float: right;
+	width: 60px;
+	height: 30px;
+	background: rgb(242, 36, 39);
+	border: none;
+}
+.box_content caption input:hover{
+	background: rgb(212, 32, 34);
+}
+.box_content th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    text-align: center;
+}
+.box_content a:hover{
+	font-weight: bold;
+}

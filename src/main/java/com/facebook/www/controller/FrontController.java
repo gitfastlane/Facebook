@@ -2,11 +2,21 @@
 package com.facebook.www.controller;
 
 import com.facebook.www.command.Command;
+import com.facebook.www.command.fb_admin.AdminBoardCommand;
+import com.facebook.www.command.fb_admin.AdminBoardContentDeleteCommand;
+import com.facebook.www.command.fb_admin.AdminHomeCommand;
+import com.facebook.www.command.fb_admin.AdminMemberCommand;
+import com.facebook.www.command.fb_admin.AdminMemberOneCommand;
+import com.facebook.www.command.fb_admin.AdminPhotoBoardCommand;
 import com.facebook.www.command.fb_board.DeletePostCommand;
+import com.facebook.www.command.fb_board.DeleteReplyCommand;
 import com.facebook.www.command.fb_board.HomeCommand;
 import com.facebook.www.command.fb_board.MyPageCommand;
 import com.facebook.www.command.fb_board.PhotoAlbumCommand;
 import com.facebook.www.command.fb_board.PhotoAlbumDeleteCommand;
+import com.facebook.www.command.fb_board.PushLikeCommand;
+import com.facebook.www.command.fb_board.ReplySendCommand;
+import com.facebook.www.command.fb_board.ReplyShowCommand;
 import com.facebook.www.command.fb_board.UpdatePostCommand;
 import com.facebook.www.command.fb_board.UpdatePostOKCommand;
 import com.facebook.www.command.fb_board.WritePostCommand;
@@ -96,6 +106,16 @@ public class FrontController extends HttpServlet{
             command = new FindAccountChangePwOKCommand();
             command.execute(request, response);
             pageName = "member_login.do";
+        } else if(commandName.equals("/member_logout.do")){	// 로그아웃
+        	command = new LogoutCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_login.jsp";
+        	isRedirect = true;
+        } else if(commandName.equals("/member_deleteAccount.do")){	// 계정 삭제
+        	command = new DeleteAccountCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_login.jsp";
+        	isRedirect = true;
             //--------------------------------------------
         } else if(commandName.equals("/home.do")) {
         	command = new HomeCommand();
@@ -200,7 +220,57 @@ public class FrontController extends HttpServlet{
         }else if(commandName.equals("/member_friendAdd.do")) {
         	command = new FriendAddCommand();
         	command.execute(request, response);
-        	pageName = "home.do";
+        	return;
+        }else if(commandName.equals("/board_pushLike.do")) {	//like 추가/제거
+        	command = new PushLikeCommand();
+        	command.execute(request, response);
+        	return;       	
+        }else if(commandName.equals("/board_replyShow.do")) {	//댓글 보기
+        	command = new ReplyShowCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_replyOK.jsp";
+        }else if(commandName.equals("/board_replySend.do")) {	//댓글 작성
+        	command = new ReplySendCommand();
+        	command.execute(request, response);
+        	pageName = "board_replyShow.do";
+        	//pageName = "home.do";
+        }else if(commandName.equals("/board_replyDelete.do")) {	//댓글 삭제
+        	command = new DeleteReplyCommand();
+        	command.execute(request, response);
+        	pageName = "board_replyShow.do";        	
+        	//------------- 관리자 모드 ------------------------
+        }else if(commandName.equals("/admin_home.do")) {
+        	command = new AdminHomeCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_adminHome.jsp";
+        }else if(commandName.equals("/admin_manageBoard.do")) {	//게시글 관리
+        	command = new AdminBoardCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_adminBoard.jsp";
+        }else if(commandName.equals("/admin_deleteBoardContent.do")) {	//게시글 삭제
+        	command = new AdminBoardContentDeleteCommand();
+        	command.execute(request, response);
+        	pageName = "admin_manageBoard.do";
+        }else if(commandName.equals("/admin_managePhoto.do")) {	//사진 관리
+        	command = new AdminPhotoBoardCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_adminPhoto.jsp";
+        }else if(commandName.equals("/admin_deletePhotoContent.do")) {	//사진 삭제
+        	command = new AdminBoardContentDeleteCommand();
+        	command.execute(request, response);
+        	pageName = "admin_managePhoto.do";
+        }else if(commandName.equals("/admin_manageMember.do")) {	//회원 관리
+        	command = new AdminMemberCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_adminMember.jsp";
+        }else if(commandName.equals("/admin_memberOne.do")) {	//회원 선택
+        	command = new AdminMemberOneCommand();
+        	command.execute(request, response);
+        	pageName = "Facebook_adminMemberOne.jsp";
+        }else if(commandName.equals("/admin_deleteMemberOne.do")) {	//회원 게시글&사진 삭제
+        	command = new AdminBoardContentDeleteCommand();
+        	command.execute(request, response);
+        	pageName = "admin_memberOne.do";
         }
         
         

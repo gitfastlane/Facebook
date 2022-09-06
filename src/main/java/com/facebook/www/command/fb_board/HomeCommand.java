@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.facebook.www.command.Command;
 import com.facebook.www.dao.Fb_boardDAO;
 import com.facebook.www.dao.Fb_friendsDAO;
+import com.facebook.www.dao.Fb_likeDAO;
 import com.facebook.www.dao.Fb_memberDAO;
 import com.facebook.www.dao.Fb_tagDAO;
 import com.facebook.www.dto.Fb_boardDTO;
@@ -31,14 +32,16 @@ public class HomeCommand implements Command{
 		Fb_memberDAO mdao = Fb_memberDAO.getFb_memberDAO();
 		Fb_tagDAO tdao = Fb_tagDAO.getFb_tagDAO();
 		Fb_friendsDAO fdao = Fb_friendsDAO.getFb_friendsDAO();
+		Fb_likeDAO ldao = Fb_likeDAO.getFb_likeDAO();
 		
 		Fb_memberDTO mdto = mdao.selectOneById(userID);
 		session.setAttribute("userImage", mdto.getM_image()); // userImage 업로드
 		
 		//메인내용 불러오기
-		ArrayList<Fb_boardDTO> list = bdao.selectListAddFriendsById(userID);
-		HashMap<String, Fb_memberDTO> memberHM = mdao.pickMemberById(list);
-		HashMap<Integer, String> tagHM = tdao.pickTagFullNameByNo(list);
+		ArrayList<Fb_boardDTO> blist = bdao.selectListAddFriendsById(userID);
+		HashMap<String, Fb_memberDTO> memberHM = mdao.pickMemberById(blist);
+		HashMap<Integer, String> tagHM = tdao.pickTagFullNameByNo(blist);
+		ArrayList<Integer> llist = ldao.pickIsLikeByNo(blist, userID);	//좋아요
 		
 		//친구목록 불러오기
         ArrayList<Fb_friendsDTO> friendsList_sub = fdao.selectListById(userID);
@@ -48,9 +51,10 @@ public class HomeCommand implements Command{
 		ArrayList<Fb_memberDTO> recommandList = mdao.recommandMemberListById(userID);
 		
 		//데이터 전송
-		request.setAttribute("list", list);
+		request.setAttribute("list", blist);
 		request.setAttribute("memberHM", memberHM);
 		request.setAttribute("tagHM", tagHM);
+		request.setAttribute("llist", llist);
 		//request.setAttribute("userID", userID);
 		
 		request.setAttribute("friendsList_sub", friendsList_sub);

@@ -25,6 +25,7 @@ public class Fb_memberDAO
 	private final String TABLE_NAME_BOARD = "fb_board";
 	private final String TABLE_NAME_BOARD_TAG = "fb_board_tag";
 	private final String TABLE_NAME_FRIENDS = "fb_friends";
+	private final String BASE_IMAGE = " userFile/baseImage.jpg";
 
     private Fb_memberDAO()
     {
@@ -97,7 +98,7 @@ public class Fb_memberDAO
         String sql;
         conn = getConnection();
         pstmt = null;
-        sql = "insert into "+TABLE_NAME+"(m_id_pk, m_lastName, m_name, m_pw, m_email, m_birthYear, m_birthMonth, m_birthDay, m_gender) values(?,?,?,?,?,?,?,?,?)";
+        sql = "insert into "+TABLE_NAME+"(m_id_pk, m_lastName, m_name, m_pw, m_email, m_birthYear, m_birthMonth, m_birthDay, m_gender, m_image) values(?,?,?,?,?,?,?,?,?,?)";
         int result = 0;
         try
         {
@@ -111,6 +112,7 @@ public class Fb_memberDAO
             pstmt.setString(7, dto.getM_birthMonth());
             pstmt.setString(8, dto.getM_birthDay());
             pstmt.setString(9, dto.getM_gender());
+            pstmt.setString(10, BASE_IMAGE);
             result = pstmt.executeUpdate();
             if(result <= 0) {
             	System.out.println("signupOK Error");
@@ -142,6 +144,24 @@ public class Fb_memberDAO
 			close(pstmt, conn);
 		}
     	
+    }
+    
+    public void deleteAccount(String id) {
+    	Connection conn = getConnection();
+    	PreparedStatement pstmt = null;
+    	String sql = "delete from "+TABLE_NAME+" where m_id_pk=?";
+    	int result = 0;
+    	try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+			if(result<=0)System.out.println("deleteAccount Error");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt, conn);
+		}
     }
 
     public boolean idCheckOK(String newId)
@@ -266,6 +286,22 @@ public class Fb_memberDAO
 
         return memberHM;
     }
+    
+    public HashMap<String, Fb_memberDTO> pickReplyMemberByNo(int no){
+    	Fb_boardDAO bdao = Fb_boardDAO.getFb_boardDAO();
+    	HashMap<String, Fb_memberDTO> memberHM = new HashMap<>();
+    	ArrayList<Fb_boardDTO> blist = bdao.selectReplyListByNo(no);
+    	String id = null;
+    	for(int j = 0; j < blist.size(); j++)
+           {
+               Fb_boardDTO dto = (Fb_boardDTO)blist.get(j);
+               id = dto.getB_id_fk();
+               if(!memberHM.containsKey(id))
+                   memberHM.put(id, getNameImageById(id));
+           }
+    	return memberHM;
+    }
+    
     public HashMap<String, Fb_memberDTO> pickFriendById(ArrayList<Fb_friendsDTO> list)
     {
     	HashMap<String, Fb_memberDTO> memberHM = new HashMap<>();
@@ -484,4 +520,7 @@ public class Fb_memberDAO
 		}
     	return list;
     }
+    
+  
+    
 }

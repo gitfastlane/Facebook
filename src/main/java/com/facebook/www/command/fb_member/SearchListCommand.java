@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.facebook.www.command.Command;
 import com.facebook.www.dao.Fb_boardDAO;
 import com.facebook.www.dao.Fb_friendsDAO;
+import com.facebook.www.dao.Fb_likeDAO;
 import com.facebook.www.dao.Fb_memberDAO;
 import com.facebook.www.dao.Fb_tagDAO;
 import com.facebook.www.dto.Fb_boardDTO;
@@ -30,6 +31,7 @@ public class SearchListCommand implements Command{
 		Fb_friendsDAO fdao = Fb_friendsDAO.getFb_friendsDAO();
 		Fb_boardDAO bdao = Fb_boardDAO.getFb_boardDAO();
 		Fb_tagDAO tdao = Fb_tagDAO.getFb_tagDAO();
+		Fb_likeDAO ldao = Fb_likeDAO.getFb_likeDAO();
 		
 		//검색기능
 		searchTag = searchTag.trim();
@@ -37,12 +39,16 @@ public class SearchListCommand implements Command{
 			ArrayList<Fb_boardDTO> blist = bdao.searchBoardByTag(searchTag);
 			HashMap<String, Fb_memberDTO> memberHM = mdao.pickMemberById(blist);
 			HashMap<Integer, String> tagHM = tdao.pickTagFullNameByNo(blist);
+			ArrayList<Integer> llist = ldao.pickIsLikeByNo(blist, userID);	//좋아요
+			
 			request.setAttribute("blist", blist);
 			request.setAttribute("memberHM", memberHM);
 			request.setAttribute("tagHM", tagHM);
+			request.setAttribute("llist", llist);
 		}else {
 			ArrayList<Fb_memberDTO> mlist = mdao.searchMemberList(searchTag);
 			ArrayList<String> flist = fdao.printFriendIdList(userID);
+			
 			request.setAttribute("mlist", mlist);
 			request.setAttribute("flist", flist);					
 		}
